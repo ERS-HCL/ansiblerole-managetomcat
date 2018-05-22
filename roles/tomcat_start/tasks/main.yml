@@ -1,0 +1,6 @@
+---
+# tasks file for tomcat_start
+- name: start tomcat
+  shell: ./startup.sh
+  args:
+   chdir: /usr/share/tomcat/bin/

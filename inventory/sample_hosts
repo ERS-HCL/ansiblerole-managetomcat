@@ -1,0 +1,14 @@
+[app]
+app1
+
+[lb]
+localhost
+
+[lbworkers]
+app1
+localhost
+
+[hosts]
+localhost
+#app1 ansible_ssh_host=ip.of.host  ansible_ssh_user=root ansible_ssh_passwd=*****
+

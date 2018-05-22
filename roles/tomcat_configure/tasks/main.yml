@@ -1,0 +1,28 @@
+---
+# tasks file for tomcat-ansible-role
+
+- name: Setup tomcat-users.xml
+  template:
+    src: tomcat-users.xml.j2
+    dest: /usr/share/tomcat/conf/tomcat-users.xml
+  register: result
+
+- name: create manager.xml empty file
+  file: path=/usr/share/tomcat/conf/Catalina/localhost/manager.xml state=touch owner=tomcat group=tomcat mode=0666
+
+- name: Configure access to Manager app (from localhost only or from anywhere)
+  template:
+    src: manager.xml.j2
+    dest: /usr/share/tomcat/conf/Catalina/localhost/manager.xml
+  register: result
+
+- name: stop tomcat
+  shell: ./shutdown.sh
+  args:
+    chdir: /usr/share/tomcat/bin/
+  when: result is defined
+
+- name: start tomcat
+  shell: ./startup.sh
+  args:
+   chdir: /usr/share/tomcat/bin/

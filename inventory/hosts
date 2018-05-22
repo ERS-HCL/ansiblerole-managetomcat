@@ -1,0 +1,14 @@
+[app]
+app1
+
+[lb]
+app2
+
+[lbworkers]
+app1
+app2
+
+[hosts]
+app1 ansible_ssh_host=10.106.131.189  ansible_ssh_user=root ansible_ssh_passwd=root123
+app2 ansible_ssh_host=10.106.131.86  ansible_ssh_user=root ansible_ssh_passwd=root123
+

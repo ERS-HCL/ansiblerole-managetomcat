@@ -1,0 +1,7 @@
+---
+# tasks file for deployment
+
+ - name: Deploying sample war file
+   copy: 
+     src: /opt/gol.war
+     dest: /usr/share/tomcat/webapps/

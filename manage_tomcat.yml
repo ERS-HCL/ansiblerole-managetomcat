@@ -1,0 +1,25 @@
+# This ansible script for installing tomcat, configure, user adding, uninstall tomcat
+# owner : Srinivas Kudipudi  and Nagarjuna
+
+---
+- hosts: hosts
+#  connection: local
+  remote_user: root
+  become: yes
+  gather_facts: False
+  environment:
+     JAVA_HOME: /opt/jdk1.8.0_161/
+  vars_prompt:
+    - name: "choice"
+      prompt: " Enter your choice \n\n 01 tomcat_install \n\n 02 tomcat_uninstall \n\n 03 tomcat_configure \n\n 04 tomcat_start \n\n 05 tomcat_shutdown \n\n 06 application_deployment \n\n 07 Back_up of tomcat \n\nChoice"
+      private: no
+#      default: ""
+
+  roles:
+    - { role: tomcat_install, when: choice == '01' }
+    - { role: tomcat_uninstall, when: choice == '02' }
+    - { role: tomcat_configure, when: choice == '03' }
+    - { role: tomcat_start, when: choice == '04' }
+    - { role: tomcat_shutdown, when: choice == '05' }
+    - { role: deployment, when: choice == '06' }
+    - { role: backup_tomcat, when: choice == '07' }

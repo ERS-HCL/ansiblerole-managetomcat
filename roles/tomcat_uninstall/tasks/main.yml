@@ -1,0 +1,9 @@
+---
+- name: shut down tomcat
+  shell: ./shutdown.sh
+  args:
+    chdir: /usr/share/tomcat/bin/
+- name: uninstall 
+  shell: mv /usr/share/tomcat /usr/share/tc
+
+

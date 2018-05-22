@@ -1,0 +1,5 @@
+---
+- name: shutdown tomcat
+  shell: ./shutdown.sh
+  args:
+   chdir: /usr/share/tomcat/bin/
